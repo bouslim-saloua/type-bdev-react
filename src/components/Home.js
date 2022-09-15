@@ -21,10 +21,7 @@ return(
                 </form>
               </div>
             </div><a class="btn btn-primary order-1 order-lg-0 ms-lg-3" href="#!">Contact Us</a>
-            <form class="d-flex my-3 d-block d-lg-none">
-              <input class="form-control me-2 border-200 bg-light" type="search" placeholder="Search" aria-label="Search" />
-              <button class="btn btn-outline-primary" type="submit">Search</button>
-            </form>
+           
           </div>
         </div>
       </nav>
