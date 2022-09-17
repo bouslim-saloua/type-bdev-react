@@ -1,5 +1,5 @@
-import React, { useReducer, useState , useRef} from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, {  useState , useRef} from "react";
+import { useNavigate } from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
@@ -13,7 +13,7 @@ if(!value){
   
 
     return(
-<div className="ivalid-feedback d-block" >
+<div className="invalid-feedback d-block" >
 Ce champ est obligatoire ! 
     </div>
     );
@@ -110,7 +110,7 @@ return(
                   <Input type="password" className="form-control"  id="password" name="password" value={password} onChange={onChangePassword} validations={[required]}/>
                 
                   
-                  <span>Vous n'avez pas un compte? &nbsp;&nbsp;&nbsp;&nbsp;<a href="/home"><strong>S'inscrire</strong></a></span>
+                  <span>Vous n'avez pas un compte? &nbsp;&nbsp;&nbsp;&nbsp;<a href="/register"><strong>S'inscrire</strong></a></span>
 
                   <div className="form-group">
             <button className="btn btn-block btn-primary authbtn" disabled={loading}>
