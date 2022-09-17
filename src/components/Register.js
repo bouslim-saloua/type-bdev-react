@@ -26,29 +26,29 @@ return(
               <form >
                 <div class="form-group first row">
                   <div className="col-md-6">
-                  <label for="username">Nom <span>*</span></label>
+                  <label for="username">Nom <span className="obg">*</span></label>
                   <input type="text" class="form-control"  id="username"/>
                   </div>
                   <div className="col-md-6">
-                  <label for="username">Prénom <span>*</span></label>
+                  <label for="username">Prénom <span className="obg">*</span></label>
                   <input type="text" class="form-control"  id="username"/>
                   </div>
                   
                 </div>
                 <div class="form-group first">
                   
-                  <label for="username">Profession <span>*</span></label>
+                  <label for="username">Profession <span className="obg">*</span></label>
                   <input type="text" class="form-control"  id="username"/>
                  
                   
                 </div>
                 <div class="form-group first row">
                   <div className="col-md-6">
-                  <label for="username">Adresse e-mail <span>*</span></label>
+                  <label for="username">Adresse e-mail <span className="obg">*</span></label>
                   <input type="text" class="form-control"  id="username"/>
                   </div>
                   <div className="col-md-6">
-                  <label for="username">Téléphone <span>*</span></label>
+                  <label for="username">Téléphone <span className="obg">*</span></label>
                   <input type="text" class="form-control"  id="username"/>
                   </div>
                   
@@ -57,15 +57,15 @@ return(
 
                 <div class="form-group last mb-3 row">
                   <div className="col-md-6">
-                  <label for="password">Mot de passe <span>*</span></label>
+                  <label for="password">Mot de passe <span className="obg">*</span></label>
                   <input type="password" class="form-control"  id="password"/>
                   </div>
                   <div className="col-md-6">
-                  <label for="password">Confirmation mot de passe <span>*</span></label>
+                  <label for="password">Confirmer mot de passe <span className="obg">*</span></label>
                   <input type="password" class="form-control"  id="password"/>
                   </div>
 
-                  <span>Vous avez déjà un compte ?<a><strong>Se connecter</strong></a></span>
+                  <span>Vous avez déjà un compte? &nbsp;&nbsp;&nbsp;&nbsp;<a><strong>Se connecter</strong></a></span>
                 </div>
                 
               

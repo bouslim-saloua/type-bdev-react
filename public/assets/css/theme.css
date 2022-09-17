@@ -5121,6 +5121,9 @@ fieldset:disabled .btn {
 .navbar-light .navbar-nav .nav-link {
   color: rgba(0, 0, 0, 0.9);
 }
+.link-hover:hover{
+  color: #A34F23;
+}
 
 .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
   color: rgba(0, 0, 0, 0.95);
@@ -5129,7 +5132,9 @@ fieldset:disabled .btn {
 .navbar-light .navbar-nav .nav-link.disabled {
   color: rgba(0, 0, 0, 0.25);
 }
-
+.fw-bolder{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
 .navbar-light .navbar-nav .show > .nav-link,
 .navbar-light .navbar-nav .nav-link.active {
   color: rgba(249, 92, 25, 0.95);
