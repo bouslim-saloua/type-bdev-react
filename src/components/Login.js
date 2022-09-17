@@ -7,20 +7,10 @@ import "../css/Register.css";
 import AuthService from "../services/auth.service";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-/**/
-//vérifier que les champs ne sont pas vides
+
 const required = (value)=>{
 if(!value){
-  //toastify
- /* const errRequired= toast.error(' Les champs ne doivent pas être vides', {
-    position: "bottom-left",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    });*/
+  
 
     return(
 <div className="ivalid-feedback d-block" >
@@ -64,7 +54,7 @@ const Login=()=>{
             error.toString();
           setLoading(false);
           setMessage(resMessage);
-          toast.error(' email or phone number already exist', {
+          toast.error("Ces informations d'authentification ne correspondent pas à nos enregistrements.", {
             position: "bottom-left",
             autoClose: 5000,
             hideProgressBar: false,
@@ -104,7 +94,7 @@ return(
 <hr></hr>
               <h3><strong>Se connecter</strong></h3>
               </div>
-              <Form className="needs-validation" noValidate >
+              <Form className="needs-validation" noValidate  onSubmit={handleLogin} ref={form}>
                 <div className="form-group first row">
                   
                   <label htmlFor="email">Adresse e-mail <span className="obg">*</span></label>
@@ -153,9 +143,8 @@ pauseOnHover
 />
             </div>
           )}
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
                 </div>
-                
+                 <CheckButton style={{ display: "none" }} ref={checkBtn} />
               
 
 
