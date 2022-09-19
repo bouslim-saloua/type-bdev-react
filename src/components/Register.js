@@ -7,7 +7,8 @@ import AuthService from "../services/auth.service";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { isEmail } from "validator";
-import { useNavigate } from "react-router-dom";
+
+
 const required = value =>{
   if(!value){
     return(
@@ -76,7 +77,7 @@ Le numéro de téléphone ne doit dépasser 10 caractères!
 );
 }
 };
-const Register=()=>{
+const Register=(props)=>{
   const form = useRef();
   const checkBtn = useRef();
 const [nom, setNom] = useState("");
@@ -89,7 +90,7 @@ const [successful, setSuccessful] = useState(false);
 const [message, setMessage] = useState("");
 const [confirmPassword, setConfirmPassword] = useState("");
 
-const navigate = useNavigate();
+
 
   const onChangeNom = (e) =>{
 const nom = e.target.value;
@@ -152,8 +153,12 @@ setPrenom(prenom);
         (response) => {
           setMessage(response.data.message);
           setSuccessful(true);
-          navigate("/home");
-          window.location.reload();
+          console.log(nom);
+          console.log(prenom);
+          console.log(telephone);
+          console.log(email);
+          console.log(profession);
+          console.log(password);
          // successNotification();
          toast.success('Votre compte est enregistré avec succé!', {
           position: "bottom-left",
@@ -174,8 +179,7 @@ setPrenom(prenom);
             error.toString();
           setMessage(resMessage);
           setSuccessful(false);
-         // errorNotification();
-        // toast("ffff!")
+         
         toast.error(' email or phone number already exist', {
           position: "bottom-left",
           autoClose: 5000,
@@ -191,77 +195,78 @@ setPrenom(prenom);
   };
   
 return(
-    <div class="half">
-    <div class="bg order-1 order-md-2" >
+    <div className="half">
+    <div className="bg order-1 order-md-2" >
  
     </div>
-    <div class="contents order-2 order-md-1">
+    <div className="contents order-2 order-md-1">
 
-      <div class="container">
-        <div class="row align-items-center justify-content-center">
+      <div className="container">
+        <div className="row align-items-center justify-content-center">
         
-          <div class="col-md-6">
+          <div className="col-md-6">
            
-            <div class="form-block">
+            <div className="form-block">
             <div className="h-100 d-flex align-items-center justify-content-center" >
-<img className="uca-logo" src="../assets/img/uca-logo.png"></img>
+<img className="uca-logo" src="../assets/img/uca-logo.png" alt='logo ucam'></img>
 
 </div>
-              <div class="text-center mb-5">
+              <div className="text-center mb-5">
              
 <hr></hr>
               <h3><strong>S'inscrire</strong></h3>
               </div>
               <Form className="needs-validation" noValidate  onSubmit={handleRegister} ref={form}>
-                <div class="form-group first row">
+                <div className="form-group first row">
                   <div className="col-md-6">
                   <label htmlFor="nom">Nom <span className="obg">*</span></label>
-                  <Input type="text" class="form-control"  id="nom" name="nom" value={nom} validations={[vnom]} onChange={onChangeNom}/>
+                  <Input type="text" className="form-control"  id="nom" name="nom" value={nom} validations={[vnom,required]} onChange={onChangeNom}/>
                   </div>
                   <div className="col-md-6">
                   <label htmlFor="prenom">Prénom <span className="obg">*</span></label>
-                  <Input type="text" class="form-control"  id="prenom" name="prenom" value={prenom} onChange={onChangePrenom} validations={[vprenom]}/>
+                  <Input type="text" className="form-control"  id="prenom" name="prenom" value={prenom} onChange={onChangePrenom} validations={[vprenom, required]}/>
                   </div>
                   
                 </div>
-                <div class="form-group first">
+                <div className="form-group first">
                   
                   <label htmlFor="profession">Profession <span className="obg">*</span></label>
-                  <Input type="text" class="form-control"  id="profession" value={profession} onChange={onChangeProfession} />
+                  <Input type="text" className="form-control"  id="profession" value={profession} onChange={onChangeProfession} validations={[required]} />
                  
                   
                 </div>
-                <div class="form-group first row">
+                <div className="form-group first row">
                   <div className="col-md-6">
                   <label htmlFor="email">Adresse e-mail <span className="obg">*</span></label>
-                  <Input type="text" class="form-control"  id="email" name="email" value={email} validations={[vemail]} onChange={onChangeEmail} />
+                  <Input type="text" className="form-control"  id="email" name="email" value={email} validations={[vemail, required]} onChange={onChangeEmail} />
                   </div>
                   <div className="col-md-6">
                   <label htmlFor="tel">Téléphone <span className="obg">*</span></label>
-                  <Input type="text" class="form-control"  id="tel" name="tel" onChange={onChangeTelephone} value={telephone} validations={[vtelephone]}/>
+                  <Input type="text" className="form-control"  id="tel" name="tel" onChange={onChangeTelephone} value={telephone} validations={[vtelephone, required]}/>
                   </div>
                   
                 </div>
 
 
-                <div class="form-group last mb-3 row">
+                <div className="form-group last mb-3 row">
                   <div className="col-md-6">
                   <label htmlFor="password">Mot de passe <span className="obg">*</span></label>
-                  <Input type="password" class="form-control"  id="password" onChange={onChangePassword} value={password} validations={[vpassword]}/>
+                  <Input type="password" className="form-control"  id="password" onChange={onChangePassword} value={password} validations={[vpassword, required]}/>
                   </div>
                   <div className="col-md-6">
                   <label htmlFor="cpassword">Confirmer mot de passe <span className="obg">*</span></label>
-                  <Input type="password" class="form-control"  id="cpassword" onChange={onChangeConfirmPassword} value={confirmPassword} validations={[vconfirmpassword]}/>
+                  <Input type="password" className="form-control"  id="cpassword" onChange={onChangeConfirmPassword} value={confirmPassword} validations={[vconfirmpassword, required]}/>
                   </div>
 
                   <span>Vous avez déjà un compte? &nbsp;&nbsp;&nbsp;&nbsp;<a href="/login"><strong>Se connecter</strong></a></span>
+                  
                 </div>
                 <div className="form-group">
                 <button className="btn btn-primary btn-block authbtn">Enregistrer</button>
               </div>
-              
-
-              {message && (
+           
+         
+          {message && (
             <div>
                <div className="toast">
           <div className="toast-item">
@@ -285,6 +290,7 @@ pauseOnHover
             </div>
           )}
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
+               
               </Form>
             </div>
           </div>
