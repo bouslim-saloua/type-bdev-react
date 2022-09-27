@@ -28,7 +28,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import Form from './Form';
 import Second from './Second';
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -317,6 +316,7 @@ const CreateDemande = () =>{
           </IconButton>
           
         </DrawerHeader>
+        
       
         <Divider />
         <List>
@@ -344,6 +344,7 @@ const CreateDemande = () =>{
             </ListItem>
           ))}
         </List>
+       
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
@@ -351,10 +352,17 @@ const CreateDemande = () =>{
         
         <Toolbar />
        
+        
       </Box>
-      <Second/>
+      
+     
         </Main>
+        <Box>
+      <Second/>
     </Box>
+       
+    </Box>
+ 
 
 );
 }

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Card, Box, TextInput, Text,  Button, Group, Select, FileInput, Container,Table, Space , MultiSelect} from '@mantine/core';
+import { Card, Box, TextInput, Text,  Button, Group, NativeSelect, FileInput, Container,Table, Space , MultiSelect} from '@mantine/core';
 import { IconUpload } from '@tabler/icons';
 import { DatePicker } from '@mantine/dates';
 import { Stepper } from '@mantine/core';
@@ -9,6 +9,157 @@ import { useState } from "react";
 import "../css/Informations.css";
 
 const  Second=() =>{
+//gestion financière
+const [list1, setList1] = useState([]);
+const [list2, setList2] = useState([]);
+const [list3, setList3] = useState([]);
+  const [libelle, setLibelle] = useState("");
+  const [information, setInformation] = useState("");
+  //handle value changing;
+  const onChangeLibelle = (e) =>{
+const libelle = e.target.value;
+setLibelle(libelle);
+  }
+
+  //Contributeurs
+  const [nomContributeur, setNomContributeur] = useState("");
+  const [montantConribution, setMontantContribution] =useState();
+  const [natureContribution, setNatureContribution] = useState("");
+  const [typeContribution, setTypeContribution] = useState("");
+  //handle change pour contributeur fields
+  const onChangeNomContributeur =(e) =>{
+    const nomContributeur = e.target.value;
+    setNomContributeur(nomContributeur);
+  }
+
+  const onChangeMontantContribution =(e) =>{
+    const montantConribution = e.target.value;
+    setMontantContribution(montantConribution);
+  }
+
+  const onChangeNatureContribution =(e) =>{
+    const natureContribution = e.target.value;
+    setNatureContribution(natureContribution);
+  }
+
+  const onChangeTypeContribution =(e) =>{
+    const typeContribution = e.target.value;
+    setTypeContribution(typeContribution);
+   // console.log(typeContribution);
+  }
+
+
+
+
+  //handle remove item from a table
+ /* const handleRemoveItem = index => { // assigning the list to temp variable 
+    const newList1= list1.splice(index, 1)
+    setList1({ rows: newList1 })
+    
+  }*/
+  const handleRemoveItem = id =>{
+    setList1(list1.filter(item => item.id !== id))
+
+  }
+  const handleRemoveItem2 = id =>{
+    setList1(list2.filter(item => item.id !== id))
+
+  }
+
+  const handleRemoveItem3 = id =>{
+    setList1(list3.filter(item => item.id !== id))
+
+  }
+  const onChangeInformation = (e)=>{
+    const information = e.target.value;
+    setInformation(information);
+  }
+
+  const handleAddForm1 =()=>{
+
+let newId = list1.length + 1;
+
+const result = {id:newId, libelle: libelle, information: information };
+const newList = [...list1, {...result}];
+
+
+setList1(newList);
+setLibelle('');
+setInformation('');
+
+
+//console.log(list1);
+  }
+
+  const handleAddForm3 =()=>{
+
+    let newId = list3.length + 1;
+    
+    const result = {id:newId, nom: nomContParticipant, montant: montantContParticipant };
+    const newList = [...list3, {...result}];
+    
+    
+    setList3(newList);
+   setNomContParticipant('');
+   setMontantContParticipant('');
+    
+    
+    //console.log(list1);
+      }
+
+  //contribution des participants
+  const [nomContParticipant, setNomContParticipant] = useState("");
+  const [montantContParticipant, setMontantContParticipant] = useState();
+//la liste des frais couverts 
+
+const onChangeNomContParticipation = (e) =>{
+  const nomContParticipant = e.target.value;
+  setNomContParticipant(nomContParticipant);
+}
+
+const onChangeMontantContParticipant = (e) =>{
+  const montantContParticipant = e.target.value;
+  setMontantContParticipant(montantContParticipant);
+}
+
+  const rows1 = list1.map((row) =>{
+return(
+  <tr key={row.id}>
+  <td>{row.libelle}</td>
+  <td>{row.information}</td>
+  <td><Button style={{backgroundColor:"#F64642"}} onClick={() => handleRemoveItem(row.id)}>x
+  </Button></td>
+    </tr>
+);
+  }
+   
+  )
+  ;
+
+  const rows3 = list3.map((row) =>{
+    return(
+      <tr key={row.id}>
+      <td>{row.nom}</td>
+      <td>{row.montant}</td>
+      <td><Button style={{backgroundColor:"#F64642"}} onClick={() => handleRemoveItem3(row.id)}>x
+      </Button></td>
+        </tr>
+    );
+      }
+       
+      )
+      ;
+    
+//commité d'organisation non local
+const [nomCorgNonLocal, setNomCorgNonLocal] = useState("");
+const [prenomCorgNonLocal, setPrenomCorgNonLocal] = useState("");
+const [telOrgNonLocal, setTelOrgNonLocal] = useState("");
+const [emailCorgNonLocal, setEmailCorgNonLocal] = useState("");
+const [universityCorgNonLocal, setUniversityCorgNonLocal] = useState("");
+const [etablisssementCorgNonLocal, setEtablissementCorgNonLocal] = useState("");
+const [villeCorgNonLocal, setVilleCorgNonLocal] = useState("");
+
+
   const ths1 = (
     <tr>
       <th>Libelle</th>
@@ -17,7 +168,13 @@ const  Second=() =>{
       
     </tr>
   );
-
+const ths3 = (
+<tr>
+  <th>Nom</th>
+  <th>Montant</th>
+  <th>Action</th>
+</tr>
+);
   const ths2 = (
     <tr>
       <th>Nom</th>
@@ -28,6 +185,43 @@ const  Second=() =>{
       
     </tr>
   );
+
+  //handle add form 2
+  const handleAddForm2 =()=>{
+   
+    let newId = list2.length + 1;
+    
+    const result = {id:newId, nom: nomContributeur, montant: montantConribution, nature: natureContribution, type: typeContribution };
+    const newList = [...list2, {...result}];
+    
+    
+    setList2(newList);
+    setNomContributeur('');
+    setNatureContribution(null);
+    setTypeContribution(null);
+    setMontantContribution('');
+    
+    
+    console.log(list2);
+      };
+
+      
+  const rows2 = list2.map((row) =>{
+    return(
+      <tr key={row.id}>
+      <td>{row.nom}</td>
+      <td>{row.montant}</td>
+      <td>{row.type}</td>
+      <td>{row.nature}</td>
+      <td><Button style={{backgroundColor:"#F64642"}} onClick={() => handleRemoveItem2(row.id)}>x
+      </Button></td>
+        </tr>
+    );
+      }
+       
+      )
+      ;
+
 
   const ths7=(
     <tr>
@@ -65,13 +259,26 @@ const  Second=() =>{
   );
 
 
+  const typesContribution=[
+    { value: 'etablissement', label: 'Etablissement' },
+    { value: 'sponsors', label: 'Sponsors' }
+    
+  ];
+//hébergement, restauration, pause café, impression de documents
+  const naturesContribution=[
+    { value: 'hébergement', label: 'Hébergement' },
+    { value: 'restauration', label: 'Restauration' },
+    { value: 'pause cafe', label: 'Pause café' },
+    { value: 'impression documents', label: 'Impression de documents' }
+
+  ]
   const [active, setActive] = useState(1);
     const nextStep = () => setActive((current) => (current < 5 ? current + 1 : current));
     const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
   return (
     <div>
     <div class="wrapper">
-        
+        {/*
         <nav id="sidebar">
             <div class="sidebar-header">
                 <h3 style={{color:"#fff"}}>Menu</h3>
@@ -147,7 +354,7 @@ const  Second=() =>{
             </ul>
         </nav>
 
-       
+  */}
         <div id="content">
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -182,7 +389,21 @@ const  Second=() =>{
            <Container style={{ width: '100%'}}>
             
            <Card shadow="sm" p="lg" radius="md" withBorder width="100%">
-            <Stepper active={active} onStepClick={setActive} breakpoint="sm" backgroundColor="#A34F23">
+            <Stepper active={active} onStepClick={setActive} breakpoint="sm" 
+   
+   sx={{
+    "& 	.mantine-Stepper-stepIcon": {
+      borderColor: "#A34F23"
+    
+    },
+   
+    "& .mantine-Stepper-stepCompletedIcon": {
+      borderColor: "#A34F23",
+      backgroundColor: "#A34F23"
+      
+    },
+ 
+ }}>
            
         <Stepper.Step label="First step" description="Create an account">
         <Text style={{color: "#A34F23"}}><strong>Informations concernant la manifestation</strong></Text>
@@ -193,74 +414,77 @@ const  Second=() =>{
     >
       <div className='row'>
         <div className='col-md-6'>
-            <label htmlFor="intitule">Intitulé de la manifestation <span className='obg'>*</span></label>
         <TextInput
-        placeholder="John Doe"
+        placeholder=""
         required
+        label="Intitulé de la manifestation"
       />
         </div>
         <div className='col-md-6'>
-        <label htmlFor="type">Type(Workshop...)<span className='obg'>*</span></label>
-
 
         <TextInput
-        placeholder="John Doe"
+        placeholder=""
         required
+        label="Type(Workshop ...)"
       />
         </div>
         </div>
         <div className='row'>
         <div className='col-md-6'>
-            <label htmlFor="lieu">Lieu<span className='obg'>*</span></label>
+            
         <TextInput
-        placeholder="John Doe"
+        placeholder=""
         required
+        label="Lieu"
       />
         </div>
         <div className='col-md-6'>
-        <label htmlFor="etendue">Etendue(Locale,Régionale...) <span className='obg'>*</span></label>
+        
         <TextInput
-        placeholder="John Doe"
+        placeholder=""
         required
+        label="Etendue(Locale, Régionale...)"
       />
         </div>
         </div>
 
         <div className='row'>
         <div className='col-md-6'>
-            <label htmlFor="siteWeb">Site Web de la manifestation<span className='obg'>*</span></label>
+           
         <TextInput
-        placeholder="John Doe"
+        placeholder=""
         required
+        label="Site Web de la manifestation"
       />
         </div>
         <div className='col-md-6'>
-        <label htmlFor="agenceOrganisatrice">Agence organisatrice <span className='obg'>*</span></label>
+       
         <TextInput
-        placeholder="John Doe"
+        placeholder=""
         required
+        label="Agence organisatrice"
       />
         </div>
         </div>
 
-        <div className='row'>
-            <label htmlFor='partenaireImplique'> Partenaire(s) impliqué(s)</label>
+        
+           
         <TextInput
-        placeholder="John Doe"
+        placeholder=""
         required
+        label="Partenaire(s) impliqué(s)"
       />
-        </div>
+       
 
-        <div className='row'>
-            <label htmlFor='etablissementImplique'> Etablissement(s) de l’UCAM impliqué(s) dans l’organisation</label>
-            <Select  data={[]} />
-        </div>
+       
+            <NativeSelect  data={[]} label="Etablissement(s) de l’UCAM impliqué(s) dans l’organisation" />
+        
 
         <div className='row'>
         <div className='col-md-6'>
         <TextInput
         label="Nombre etudiants locaux"
-        placeholder="John Doe"
+        placeholder=""
         required
       />
         </div>
@@ -273,7 +497,7 @@ const  Second=() =>{
         <div className='col-md-6'>
         <TextInput
         label="Nombre etudiants locaux"
-        placeholder="John Doe"
+        placeholder=""
         required
       />
         </div>
@@ -294,18 +518,22 @@ const  Second=() =>{
         <Stepper.Step label="Second step" description="Verify email">
          <Text style={{color: "#A34F23"}}><strong>Comment la gestion financière est-elle prévue ?</strong></Text>
          <TextInput
-        placeholder="John Doe"
+        placeholder=""
         required
         label="Libelle (Agence, association scientifique ...)"
+        value={libelle}
+        onChange={onChangeLibelle}
       />
        <TextInput
-        placeholder="John Doe"
+        placeholder=""
         required
         label="Information"
+        value={information}
+        onChange={onChangeInformation}
       />
       
       <Group position="right" mt="xl">
-      <Button style={{backgroundColor:"#A34F23"}}>+</Button>
+      <Button style={{backgroundColor:"#A34F23"}} onClick={handleAddForm1}>+</Button>
       </Group>
       <Space h="md" />
       <Card shadow="sm" p="lg" radius="md" withBorder position="center">
@@ -313,7 +541,7 @@ const  Second=() =>{
       <Table captionSide="bottom" highlightOnHover>
       <caption>Some elements from periodic table</caption>
       <thead>{ths1}</thead>
-      <tbody></tbody>
+      <tbody>{rows1}</tbody>
 
     </Table>
       </Group>
@@ -323,19 +551,23 @@ const  Second=() =>{
 
        <Text style={{color: "#A34F23"}}>Contributeurs(Sponsors,établissements)</Text>
         <TextInput
-        placeholder="John Doe"
+        placeholder=""
         required
+        value={nomContributeur}
         label="Nom"
+        onChange={onChangeNomContributeur}
       />
        <TextInput
-        placeholder="John Doe"
+        placeholder=""
         required
         label="Montant"
+        value={montantConribution}
+        onChange={onChangeMontantContribution}
       />
-     <Select required label="Nature"data={[]} />
-     <Select  required label="Type" data={[]} />
+     <NativeSelect required label="Nature"data={naturesContribution}  value={natureContribution} onChange={onChangeNatureContribution}/>
+     <NativeSelect  required label="Type" data={typesContribution} value={typeContribution} onChange={onChangeTypeContribution}/>
        <Group position="right" mt="xl">
-      <Button style={{backgroundColor:"#A34F23"}}>+</Button>
+      <Button style={{backgroundColor:"#A34F23"}} onClick={handleAddForm2}>+</Button>
       </Group>
       <Space h="md" />
       <Card shadow="sm" p="lg" radius="md" withBorder position="center">
@@ -343,7 +575,7 @@ const  Second=() =>{
       <Table captionSide="bottom" highlightOnHover>
       <caption>Some elements from periodic table</caption>
       <thead>{ths2}</thead>
-      <tbody></tbody>
+      <tbody>{rows2}</tbody>
 
     </Table>
 
@@ -359,27 +591,32 @@ const  Second=() =>{
       data={[]}
       label="Les frais d’inscription couvrent (selection multiple) :"
       placeholder=""
+      
     />
     <TextInput
         placeholder=""
         required
         label="Nom"
+        onChange={onChangeNomContParticipation}
+        value={nomContParticipant}
       />
       <TextInput
         placeholder=""
         required
         label="Montant"
+        onChange={onChangeMontantContParticipant}
+        value={montantContParticipant}
       />
        <Group position="right" mt="xl">
-      <Button style={{backgroundColor:"#A34F23"}}>+</Button>
+      <Button style={{backgroundColor:"#A34F23"}} onClick={handleAddForm3}>+</Button>
       </Group>
       <Space h="md" />
       <Card shadow="sm" p="lg" radius="md" withBorder position="center">
       
       <Table captionSide="bottom" highlightOnHover>
       <caption>Some elements from periodic table</caption>
-      <thead>{ths2}</thead>
-      <tbody></tbody>
+      <thead>{ths3}</thead>
+      <tbody>{rows3}</tbody>
 
     </Table>
 
